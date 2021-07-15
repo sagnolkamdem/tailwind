@@ -1,0 +1,38 @@
+.loader {
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border: 16px solid white;
+    width: 120px;
+    height: 120px;
+    border-top-color: white;
+    border-bottom-color: white;
+    border-radius: 50%;
+    animation: chargeur 4s linear infinite;
+}
+
+@keyframes chargeur {
+    0% {
+        transform: rotate(0deg) scale(1);
+        border-top-color: #0275d8;
+        border-bottom-color: #0275d8;
+    }
+    /* 25%{
+      border-top-color: white;
+      border-bottom-color: white;
+    } */
+    50% {
+        transform: rotate(360deg) scale(1.15);
+        border-top-color: #0275d8;
+        border-bottom-color: #0275d8;
+    }
+    /* 75%{
+      border-top-color: green;
+      border-bottom-color: green;
+    } */
+    100% {
+        transform: rotate(720deg) scale(1);
+        border-top-color: #0275d8;
+        border-bottom-color: #0275d8;
+    }
+}
