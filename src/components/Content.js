@@ -58,7 +58,7 @@ const Content = () => {
                     <Link to={`/detailAnnounce/${announce.id}`}
                           className="text-gray-900 hover:bg-yellow-100 bg-yellow-400 mt-5 font-bold float-left rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">See
                         more</Link>
-                    <Link to="/"
+                    <Link to={`/detailAnnounce/${announce.id}/createLocation`}
                           className="text-gray-900 hover:bg-yellow-100 bg-yellow-400 mt-5 font-bold float-right rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">Ask
                         location</Link>
                 </figure>

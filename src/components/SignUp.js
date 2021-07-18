@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 
 const SignUp = () => {
+    const [first_name, setFirst_name] = useState('')
+    const [last_name, setLast_name] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
+    const [numTel, setNumTel] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
 
@@ -15,29 +18,59 @@ const SignUp = () => {
 
     const history = useHistory();
 
+    useEffect(() => {
+        (
+
+            async () => {
+                // const header = `Authorization: Token ${res.data(token)}`;
+                console.log("Token "+ localStorage.getItem('token'))
+
+                if (localStorage.getItem('token') !== null){
+                    history.push("/");
+                }else{
+                    console.log('Token exist')
+                }
+            }
+        )();
+    }, [])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password === passwordConfirm){
+
+            // console.log(first_name)
+            // console.log(last_name)
+            // console.log(username)
+            // console.log(email)
+            // console.log(password)
+            // console.log(numTel)
             await axios.post('http://127.0.0.1:8000/api/auth/register', {
+                first_name,
+                last_name,
                 username,
                 email,
-                password
+                password,
+                numTel
+            }).then(
+                setRedirect(true)
+            ).catch((err)=>{
+                console.log(err)
             });
 
-            setRedirect(true)
+
         }else{
             setShowAlert(true)
         }
     }
 
     if(redirect){
-        return history.go(-1);
+        history.push('/login');
     }
 
     return(
-        <div className="text-center text-yellow-200 h-screen flex justify-center items-center">
-            <div className="flex flex-col space-y-3 w-full max-w-2xl p-8 rounded-xl shadow-lg text-white">
+        <div className="text-center text-yellow-200 flex justify-center items-center">
+            <div className="flex flex-col space-y-3 w-full max-w-2xl p-4 rounded-xl shadow-lg text-white">
 
                 <div className="flex flex-col justify-between">
 
@@ -58,6 +91,24 @@ const SignUp = () => {
                                 </p>}
 
                             <p className="mt-6 border-yellow-200 mb-7 mr-10 text-sm text-gray-900 font-mono flex">
+                                First_name
+                            </p>
+
+                            <input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
+                                   required
+                                   onChange={e=>setFirst_name(e.target.value)}
+                            />
+
+                            <p className="mt-6 border-yellow-200 mb-7 mr-10 text-sm text-gray-900 font-mono flex">
+                                Last_name
+                            </p>
+
+                            <input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
+                                   required
+                                   onChange={e=>setLast_name(e.target.value)}
+                            />
+
+                            <p className="mt-6 border-yellow-200 mb-7 mr-10 text-sm text-gray-900 font-mono flex">
                                 Username
                             </p>
 
@@ -73,6 +124,14 @@ const SignUp = () => {
                             <input type="email" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
                                    required
                                    onChange={e=>setEmail(e.target.value)}/>
+
+                            <p className="mt-6 mb-7 mr-10 text-sm text-gray-900 font-mono flex">
+                                Numero de telephone
+                            </p>
+
+                            <input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
+                                   required
+                                   onChange={e=>setNumTel(e.target.value)}/>
 
                             <p className="mt-6 mb-7 mr-10 text-sm text-gray-900 font-mono flex">
                                 password

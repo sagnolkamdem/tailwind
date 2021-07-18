@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 
 const Dropdown = ({isOpen, toggle}) => {
     const [auth, setAuth] = useState(false)
+
+    useEffect(() => {
+        if (localStorage.getItem('token') !== null){
+            setAuth(true)
+        }
+    }, [])
 
     const history = useHistory()
 
@@ -15,10 +21,12 @@ const Dropdown = ({isOpen, toggle}) => {
         await axios.post('http://127.0.0.1:8000/api/auth/logout', {headers: {
                 Authorization: "Token "+ localStorage.getItem('token'),
             }
-        }).then(()=>{
+        }).then
+        {
+            localStorage.removeItem('token')
             setAuth(false)
-            history.push('/createAnnounce')
-        });
+            history.push('/')
+        };
     }
 
     return(

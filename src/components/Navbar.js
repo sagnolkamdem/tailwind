@@ -7,6 +7,8 @@ const Navbar = ({toggle}) => {
 
     const [auth, setAuth] = useState(false)
 
+    const [username, setUsername] = useState("")
+
     const history = useHistory()
 
 
@@ -16,17 +18,18 @@ const Navbar = ({toggle}) => {
             async () => {
                 // const header = `Authorization: Token ${res.data(token)}`;
                 console.log("Token "+ localStorage.getItem('token'))
+                console.log("Username "+ localStorage.getItem('username'))
 
                 if (localStorage.getItem('token') !== null){
+                    setUsername(localStorage.getItem('username'))
                     console.log('Token exist')
                     setAuth(true)
-
                 }else{
                     setAuth(false)
                 }
             }
         )();
-    }, [])
+    }, [1000])
 
     const handleLogOut = async (e) => {
         e.preventDefault()
@@ -36,14 +39,22 @@ const Navbar = ({toggle}) => {
         await axios.post('http://127.0.0.1:8000/api/auth/logout', {headers: {
                 Authorization: "Token "+ localStorage.getItem('token'),
             }
-        }).then(()=>{
+        }).then
+        {
+            console.log("Before clearing")
+            console.log("Token "+ localStorage.getItem('token'))
+            console.log("Username "+ localStorage.getItem('username'))
+            localStorage.clear()
+            console.log("After clearing")
+            console.log("Token "+ localStorage.getItem('token'))
+            console.log("Username "+ localStorage.getItem('username'))
             setAuth(false)
-            history.push('/createAnnounce')
-        });
+            history.push('/')
+        };
     }
 
     return(
-        <nav className="flex justify-between items-center h-16 bg-white text-black shadow-sm font-mono" role="navigation">
+        <nav className="flex justify-between items-center h-16 bg-white text-black shadow-sm font-mono mb-20" role="navigation">
             {/* border-warning border-4*/}
             <Link to="/" className="font-bold text-center pl-8 rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">Home</Link>
             <div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
@@ -70,7 +81,7 @@ const Navbar = ({toggle}) => {
 
                 {auth && <>
                     <button onClick={handleLogOut} className="font-bold pl-8 rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">LogOut</button>
-                    <Link to="/myAccount" className="font-bold pl-24 rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">My account!</Link>
+                    <Link to="/myAccount" className="font-bold pl-24 rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">{username}!</Link>
                 </>
                     }
             </div>

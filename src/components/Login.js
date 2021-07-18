@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, Redirect, useHistory} from "react-router-dom";
 import {SyntheticEvent} from "react";
 import axios from "axios";
@@ -14,6 +14,22 @@ const Login = () => {
 
     const [data, setData] = useState('')
 
+    useEffect(() => {
+        (
+
+            async () => {
+                // const header = `Authorization: Token ${res.data(token)}`;
+                console.log("Token "+ localStorage.getItem('token'))
+
+                if (localStorage.getItem('token') !== null){
+                    history.push("/");
+                }else{
+                    console.log('Token doesnt exist')
+                }
+            }
+        )();
+    }, [])
+
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
 
@@ -24,8 +40,12 @@ const Login = () => {
             console.log(username, password)
             setData(res.data)
             localStorage.setItem('token', res.data.token);
-            // console.log("token "+res.data.token)
-            // console.log("user "+res.data.user.id)
+            localStorage.setItem('id', res.data.user.id);
+            localStorage.setItem('username', res.data.user.username);
+            localStorage.setItem('email', res.data.user.email);
+            // console.log("Id "+res.data.user.id)
+            // console.log("username "+res.data.user.username)
+            // console.log("email "+res.data.user.email)
             setRedirect(true)
         }).catch(err=>{
             console.log(err, "qwerty")

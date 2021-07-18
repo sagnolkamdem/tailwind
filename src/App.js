@@ -9,6 +9,9 @@ import MyAccount from "./pages/MyAccount";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import NotFound from "./components/NotFound";
+import CreateVisit from "./pages/CreateVisit";
+import CreateLocation from "./pages/CreateLocation";
+import CreateComment from "./pages/CreateComment";
 // import {useEffect, useState} from "react";
 
 function App() {
@@ -27,6 +30,12 @@ function App() {
                 <Route path='/myAccount' exact={true} component={MyAccount}/>
 
                 <Route path='/detailAnnounce/:id' exact={true} component={DetailAnnounce}/>
+
+                <Route path='/detailAnnounce/:id/createVisit' exact={true} component={CreateVisit}/>
+
+                <Route path='/detailAnnounce/:id/createLocation' exact={true} component={CreateLocation}/>
+
+                <Route path='/detailAnnounce/:id/createComment' exact={true} component={CreateComment}/>
 
                 <Route path='/register' exact={true} component={SignUp}/>
 
