@@ -36,7 +36,7 @@ const DetailAnnounc = () => {
 
             </div> }
             {announce && (
-                <div className="h-screen flex justify-center mb-20 items-center">
+                <div className="h-screen flex justify-center items-center">
                     <div className="grid md:grid-flow-col w-4/5">
                         <div className="mr-10 mt-5 text-center border-2 border-green-300 place-items-center">
 
@@ -49,21 +49,13 @@ const DetailAnnounc = () => {
                                     <h4 className="m-10 font-mono">Prix: <span className="font-bold font-mono">{logement.price}FCFA</span></h4>
                                 </div>
                             ))}
-                            {/*<a href={announce.video} className="popup-vimeo btn-video">*/}
-                            {/*    <span className="m-auto cursor-pointer">*/}
-                            {/*    Play video*/}
-                            {/*    <svg className="w-6 h-6 m-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />*/}
-                            {/*    </svg>*/}
-                            {/*</span>*/}
-                            {/*</a>*/}
 
-                            {/*<video width="320" height="240" controls>*/}
-                            {/*    <source src="maVideo.mp4" type="video/mp4">*/}
-                            {/*        <source src="maVideo.ogg" type="video/ogg">*/}
-                            {/*            Votre explorateur ne supporte pas la balise video.*/}
-                            {/*</video>*/}
+                            <span className="m-auto cursor-pointer">
+                            Play video
+                            <svg className="w-6 h-6 m-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </span>
 
-                            <video className="w-full" controls src={announce.video} />
                         </div>
 
                         <div className="pb-2 mr-10 mt-5 text-center border-2 border-green-300" key={announce.id}>
@@ -83,7 +75,7 @@ const DetailAnnounc = () => {
                                  height="560"/>
                             <div className="pt-6 text-center space-y-4">
                                 <blockquote>
-                                    <p className="font-mono">
+                                    <p className="text-lg font-mono">
                                         {announce.description}
                                     </p>
                                 </blockquote>
@@ -99,8 +91,8 @@ const DetailAnnounc = () => {
                                     </div>
                                     {comments && comments.map((comment) =>(
                                         <div className="float-left w-full mb-5 text-gray-500 font-mono" key={comment.id}>
-                                            <h3 className="m-auto"><span className="text-gray-900">{comment.author}</span> a publie le <span className="text-gray-900">{comment.created_at.slice(0, 10)}:</span></h3>
-                                            <p className="float-left"><span className="text-gray-900">{comment.content}</span></p>
+                                            <h3 className="m-auto"><span className="text-gray-900">{comment.author}</span> a publie le <span className="text-gray-900">{comment.created_at.slice(0, 10)}</span></h3>
+                                            <p className="float-left">Contenu : <span className="text-gray-900">{comment.content}</span></p>
                                             <p>
                                                 *************************************************
                                             </p>

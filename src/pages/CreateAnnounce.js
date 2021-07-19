@@ -16,6 +16,7 @@ const CreateAnnounce = () => {
 
     const [redirect, setRedirect] = useState(false)
     const [showAlert, setShowAlert] = useState(false)
+    const proprietaire = localStorage.getItem('id')
 
     useEffect(() => {
         (
@@ -48,6 +49,7 @@ const CreateAnnounce = () => {
             description,
             quartier,
             ville,
+            proprietaire,
             region
         }).then((err)=>{
             setRedirect(true)

@@ -17,6 +17,8 @@ const CreateComment = () => {
 
     const announce = id
 
+    const author_id = localStorage.getItem('id')
+
 
     useEffect(() => {
         (
@@ -46,6 +48,7 @@ const CreateComment = () => {
 
         await axios.post('http://127.0.0.1:8000/app/announces/1/comments', {
             author,
+            author_id,
             content,
             announce
         }).then((err)=>{

@@ -14,7 +14,7 @@ const Base = (props: any) => {
     return(
         <div>
 
-            <Navbar toggle={toggle}/>
+            <Navbar toggle={toggle} />
             <Dropdown isOpen={isOpen} toggle={toggle}/>
 
                 {props.children}
