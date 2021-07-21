@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Base from "./Base";
 import {Link, useParams} from "react-router-dom";
 import useFetch from "../hook/useFetch";
@@ -6,6 +6,7 @@ import useFetch from "../hook/useFetch";
 const DetailAnnounc = () => {
 
     const { id } = useParams();
+
     const { data: announce, isPending, error } = useFetch("http://127.0.0.1:8000/app/announces/" + id);
 
     const { data: comments, isPendingC, errorC } = useFetch("http://127.0.0.1:8000/app/announces/" + id + "/comments");
@@ -41,11 +42,13 @@ const DetailAnnounc = () => {
                         <div className="mr-10 mt-5 text-center border-2 border-green-300 place-items-center">
 
                             {logements && logements.map((logement) => (
-                                <div className="p-10">
-                                    <h2 className="font-bold font-mono u">Description du logement</h2>
+                                <div className="p-5">
+                                    <h2 className="font-bold font-mono">Description du logement</h2>
+
+                                    <video className="w-full" controls src={announce.video} />
 
                                     <h4 className="m-10 font-mono">Superficie: {logement.superficie}m²</h4>
-                                    <h4 className="m-10 font-mono">Meublé: {logement.meuble}</h4>
+                                    <h4 className="m-10 font-mono">Meublé: {logement.meuble.toString()}</h4>
                                     <h4 className="m-10 font-mono">Prix: <span className="font-bold font-mono">{logement.price}FCFA</span></h4>
                                 </div>
                             ))}
@@ -63,7 +66,6 @@ const DetailAnnounc = () => {
                             {/*            Votre explorateur ne supporte pas la balise video.*/}
                             {/*</video>*/}
 
-                            <video className="w-full" controls src={announce.video} />
                         </div>
 
                         <div className="pb-2 mr-10 mt-5 text-center border-2 border-green-300" key={announce.id}>

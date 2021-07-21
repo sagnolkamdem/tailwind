@@ -17,12 +17,12 @@ const Navbar = ({toggle}) => {
 
             async () => {
                 // const header = `Authorization: Token ${res.data(token)}`;
-                console.log("Token "+ localStorage.getItem('token'))
-                console.log("Username "+ localStorage.getItem('username'))
+                // console.log("Token "+ localStorage.getItem('token'))
+                // console.log("Username "+ localStorage.getItem('username'))
 
                 if (localStorage.getItem('token') !== null){
                     setUsername(localStorage.getItem('username'))
-                    console.log('Token exist')
+                    // console.log('Token exist')
                     setAuth(true)
                 }else{
                     setAuth(false)
@@ -41,13 +41,13 @@ const Navbar = ({toggle}) => {
             }
         }).then
         {
-            console.log("Before clearing")
-            console.log("Token "+ localStorage.getItem('token'))
-            console.log("Username "+ localStorage.getItem('username'))
+            // console.log("Before clearing")
+            // console.log("Token "+ localStorage.getItem('token'))
+            // console.log("Username "+ localStorage.getItem('username'))
             localStorage.clear()
-            console.log("After clearing")
-            console.log("Token "+ localStorage.getItem('token'))
-            console.log("Username "+ localStorage.getItem('username'))
+            // console.log("After clearing")
+            // console.log("Token "+ localStorage.getItem('token'))
+            // console.log("Username "+ localStorage.getItem('username'))
             setAuth(false)
             history.push('/')
         };

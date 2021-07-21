@@ -7,9 +7,7 @@ const Content = () => {
     const url = "http://127.0.0.1:8000/app/announces";
     const { error, isPending, data: announces } = useFetch(url);
 
-    console.log("Token "+ localStorage.getItem('token'))
-
-    console.log(announces);
+    // console.log("Token "+ localStorage.getItem('token'))
 
     return (
         <div className="flex flex-wrap">
@@ -56,8 +54,9 @@ const Content = () => {
                         </figcaption>
                     </div>
                     <Link to={`/detailAnnounce/${announce.id}`}
-                          className="text-gray-900 hover:bg-yellow-100 bg-yellow-400 mt-5 font-bold float-left rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">See
-                        more</Link>
+                          className="text-gray-900 hover:bg-yellow-100 bg-yellow-400 mt-5 font-bold float-left rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">
+                            See more
+                    </Link>
                     <Link to={`/detailAnnounce/${announce.id}/createLocation`}
                           className="text-gray-900 hover:bg-yellow-100 bg-yellow-400 mt-5 font-bold float-right rounded-full py-2 px-3 uppercase text-xl cursor-pointer tracking-wide">Ask
                         location</Link>

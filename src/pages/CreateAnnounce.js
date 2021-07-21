@@ -2,17 +2,23 @@ import React, {useEffect, useState} from 'react';
 import Base from "./Base";
 import {Link, Redirect, useParams, useHistory} from "react-router-dom";
 import axios from "axios";
+import useFetch from "../hook/useFetch";
 // import {Link} from "react-router-dom";
 
 const CreateAnnounce = () => {
 
     const history = useHistory()
 
+    const { data: categories, isPending, error } = useFetch("http://127.0.0.1:8000/app/category");
+
+    console.log(categories)
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [quartier, setQuartier] = useState('');
     const [ville, setVille] = useState('');
     const [region, setRegion] = useState('');
+    const [category, setCategory] = useState('')
 
     const [redirect, setRedirect] = useState(false)
     const [showAlert, setShowAlert] = useState(false)
@@ -43,6 +49,7 @@ const CreateAnnounce = () => {
         // console.log(quartier)
         // console.log(ville)
         // console.log(region)
+        // console.log(category)
 
         await axios.post('http://127.0.0.1:8000/app/announces', {
             title,
@@ -51,6 +58,7 @@ const CreateAnnounce = () => {
             ville,
             proprietaire,
             region
+            // category
         }).then((err)=>{
             setRedirect(true)
             setShowAlert(false)
@@ -96,7 +104,7 @@ const CreateAnnounce = () => {
                                     Title
                                 </p>
 
-                                <input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
+                                <input type="text" className="border-yellow-200 border-2 text-gray-900 font-mono w-4/5"
                                        required
                                        onChange={e=>setTitle(e.target.value)}
                                 />
@@ -105,7 +113,7 @@ const CreateAnnounce = () => {
                                     Description
                                 </p>
 
-                                <input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
+                                <input type="text" className="border-yellow-200 border-2 text-gray-900 font-mono w-4/5"
                                        required
                                        onChange={e=>setDescription(e.target.value)}
                                 />
@@ -114,7 +122,7 @@ const CreateAnnounce = () => {
                                     Quartier
                                 </p>
 
-                                <input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
+                                <input type="text" className="border-yellow-200 border-2 text-gray-900 font-mono w-4/5"
                                        required
                                        onChange={e=>setQuartier(e.target.value)}
                                 />
@@ -123,7 +131,7 @@ const CreateAnnounce = () => {
                                     Ville
                                 </p>
 
-                                <input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
+                                <input type="text" className="border-yellow-200 border-2 text-gray-900 font-mono w-4/5"
                                        required
                                     onChange={e=>setVille(e.target.value)}
                                 />
@@ -132,10 +140,28 @@ const CreateAnnounce = () => {
                                     Region
                                 </p>
 
-                                <input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"
+                                <input type="text" className="border-yellow-200 border-2 text-gray-900 font-mono w-4/5"
                                        required
                                        onChange={e=>setRegion(e.target.value)}
                                 />
+
+                                {/*<p className="mt-6 mb-7 mr-10 text-sm text-gray-900 font-mono flex">*/}
+                                {/*    Categorie*/}
+                                {/*</p>*/}
+
+                                {/*<select required onChange={e=>setCategory(e.target.value)} className="w-full border-2 border-yellow-200 mt-6 mb-7 mr-10 text-sm text-gray-900 font-mono flex">*/}
+                                {/*    <option>*/}
+
+                                {/*    </option>*/}
+                                {/*    {categories && categories.map((categorie) => (*/}
+                                {/*        <option value={category.id} key={categorie.id}>{categorie.id}</option>*/}
+                                {/*    ))}*/}
+                                {/*</select>*/}
+
+                                {/*<input type="text" className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5"*/}
+                                {/*       required*/}
+                                {/*       onChange={e=>setRegion(e.target.value)}*/}
+                                {/*/>*/}
 
                                 {/*<select className="border-yellow-200 border-4 text-gray-900 font-mono w-4/5" requi>*/}
                                 {/*    <option value="Littoral">Littoral</option>*/}
